@@ -1,3 +1,25 @@
+/********************************************************
+ *
+ * Project : A02 MovieDataBase
+ * File : getAllGenres.java
+ * Name : Emily Williams 
+ * Date : 10 October 2018
+ *
+ * Description : (Narrative desciption, not code)
+ *
+ * 1) What is the purpose of the code; what problem does the code solve.
+ * creates an ArrayList that connects to the database and displays information onto a JComboBox that is being created in MainWindow 
+ *
+ * 2) What data-structures are used.
+ * Classes, Connection, Statement, ResultSet, int, String, ArrayList
+ * 
+ *
+ * 3) What algorithms, techniques, etc. are used in implementing the data structures.
+ * connects to the database and displays the Genres onto the genreJcomboBox
+ * 
+ * Changes : <Description|date of modifications>
+ *
+ ********************************************************/
 package movies;
 
 import java.sql.Connection;

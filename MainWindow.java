@@ -1,3 +1,46 @@
+/********************************************************
+ *
+ * Project : A02 MovieDataBase
+ * File : MainWindow.java
+ * Name : Emily Williams 
+ * Date : 10 October 2018
+ *
+ * Description : (Narrative desciption, not code)
+ *
+ * 1) What is the purpose of the code; what problem does the code solve.
+ * creates a connection to the database and populates a JTable filled with Movie Table 
+ *
+ * 2) What data-structures are used.
+ * Classes, String, int, Connection, Statement, ResultSet, DefaultTableModel, JComboBox, JTable, JButton, 
+ * Default ComboBox
+ * 
+ *
+ * 3) What algorithms, techniques, etc. are used in implementing the data structures.
+ * while loop, try catch, sql commands
+ * 
+ * Method populatJTables()
+ * This method calls AssosiationTable, MoviesTable, and AssosiationTable and calls the getConnection on each class. 
+ * The method populates each corresponding JTable and fills it with information from the database.
+ * 
+ * Method actorComboBox()
+ * call class GetAllActors that uses an array list to populate items in the Actor table. Then sends the array list back
+ * and is added to the Default ComboBox and calls the .ToArray() method
+ * The methods imdbcomBox(), genreComboBox() uses the same form
+ * 
+ * Method searchDataBase()
+ * is for the submit button after the user selects each drop down list the method calls a sql command using the 
+ * WHERE, AND, SELECT, and JOIN statements. After the command the method the method myAssosiationTable is called and
+ * populates information dynamically based on what the user selected.
+ * 
+ * Method resetSearch()
+ * when the reset button is pressed the assosiation table resets with information with all actors and movies
+ * 
+ * Method tableActors(), tableAssosiation(), tableMovies()
+ * creates DefaultTableModel, and adds columns to each table based on database table
+ * 
+ * Changes : <Description|date of modifications>
+ *
+ ********************************************************/
 package movies;
 
 import java.awt.BorderLayout;
@@ -89,11 +132,11 @@ public class MainWindow extends JFrame {
 		JScrollPane movieTableScrollPane = tableMovies();
 		JScrollPane paneAssosiate = tableAssosiates();
 		JScrollPane paneActors = tableActors();
-
+		
+		populateJTables();
 		sortDataBase();
 		resetSearch();
-		populateJTables();
-
+		
 		movieDataBase.add(movieTableScrollPane, BorderLayout.WEST);
 		movieDataBase.add(paneAssosiate, BorderLayout.CENTER);
 		movieDataBase.add(paneActors, BorderLayout.EAST);
@@ -110,25 +153,6 @@ public class MainWindow extends JFrame {
 		myActorTable.getConnectionActors(sqlActor, modelActors);
 		myAssosiationTable.getConnectionAssosiation(sqlAssosiation,
 				modelAssosiates);
-	}
-
-	/**
-	 * Resets the Assosiation Panel with all information for actors and movies
-	 */
-	private void resetSearch() {
-		btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				modelAssosiates.setRowCount(0);
-				try {
-					myAssosiationTable.getConnectionAssosiation(sqlAssosiation,
-							modelAssosiates);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		sortDataBase.add(btnReset);
 	}
 
 	/**
@@ -172,8 +196,8 @@ public class MainWindow extends JFrame {
 	 */
 	private void actorComboBox() throws SQLException {
 		actorBox = new JComboBox<Object>();
-		String actorStatement = "SELECT DISTINCT ID, FirstName, LastName FROM Actor ";
 		GetAllActors myGetAllActors = new GetAllActors();
+		String actorStatement = "SELECT DISTINCT ID, FirstName, LastName FROM Actor ";
 		DefaultComboBoxModel<Object> modelActor = new DefaultComboBoxModel<>(
 				myGetAllActors.getAllActors(actorStatement).toArray());
 		actorBox = new JComboBox<Object>(modelActor);
@@ -204,7 +228,8 @@ public class MainWindow extends JFrame {
 		sortMovie = new JButton("Search");
 		sortMovie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.ImdbScore, m.Rating, a.FirstName, a.LastName "
+				String sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.ImdbScore, "
+						+ "m.Rating, a.FirstName, a.LastName "
 						+ "FROM Movie m "
 						+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
 						+ "JOIN Actor a ON ama.ActorID = a.ID "
@@ -225,6 +250,25 @@ public class MainWindow extends JFrame {
 
 			}
 		});
+	}
+	
+	/**
+	 * Resets the Assosiation Panel with all information for actors and movies
+	 */
+	private void resetSearch() {
+		btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				modelAssosiates.setRowCount(0);
+				try {
+					myAssosiationTable.getConnectionAssosiation(sqlAssosiation,
+							modelAssosiates);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		sortDataBase.add(btnReset);
 	}
 
 	/**

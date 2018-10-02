@@ -1,3 +1,25 @@
+/********************************************************
+ *
+ * Project : A02 MovieDataBase
+ * File : DirectorsSql.java
+ * Name : Emily Williams 
+ * Date : 10 October 2018
+ *
+ * Description : (Narrative desciption, not code)
+ *
+ * 1) What is the purpose of the code; what problem does the code solve.
+ * Creates sql commands that will create a table, fill a table, or drop a table for Directors 
+ *
+ * 2) What data-structures are used.
+ * Classes, sql commands
+ * 
+ *
+ * 3) What algorithms, techniques, etc. are used in implementing the data structures.
+ * Sql Commands
+ * 
+ * Changes : <Description|date of modifications>
+ *
+ ********************************************************/
 package movies;
 
 public class DirectorsSql {

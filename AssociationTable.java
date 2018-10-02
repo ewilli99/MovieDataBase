@@ -1,3 +1,30 @@
+/********************************************************
+ *
+ * Project : A02 MovieDataBase
+ * File : AssosiationTable.java
+ * Name : Emily Williams 
+ * Date : 10 October 2018
+ *
+ * Description : (Narrative desciption, not code)
+ *
+ * 1) What is the purpose of the code; what problem does the code solve.
+ * creates a connection to the database and populates a JTable filled with Movie Table 
+ *
+ * 2) What data-structures are used.
+ * Classes, String, int, Connection, Statement, ResultSet, DefaultTableModel
+ * 
+ *
+ * 3) What algorithms, techniques, etc. are used in implementing the data structures.
+ * while loop, try catch,
+ * 
+ * Method getConnectionAssosiation
+ * this method uses a ResultSet in order to find information for each column in the Assosiation Table of the DataBase
+ * while there is data the  ResultSet the information is added to each column specified and display the information on a JTable
+ * 
+ * Changes : <Description|date of modifications>
+ *
+ ********************************************************/
+
 package movies;
 
 import java.sql.Connection;

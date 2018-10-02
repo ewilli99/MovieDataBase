@@ -1,3 +1,25 @@
+/********************************************************
+ *
+ * Project : A02 MovieDataBase
+ * File : GetImdbScore.java
+ * Name : Emily Williams 
+ * Date : 10 October 2018
+ *
+ * Description : (Narrative desciption, not code)
+ *
+ * 1) What is the purpose of the code; what problem does the code solve.
+ * creates an ArrayList that connects to the database and displays information onto a JComboBox that is being created in MainWindow 
+ *
+ * 2) What data-structures are used.
+ * Classes, Connection, Statement, ResultSet, int, String, ArrayList
+ * 
+ *
+ * 3) What algorithms, techniques, etc. are used in implementing the data structures.
+ * connects to the database and displays the Actors last name onto the imdbScoreJcomboBox
+ * 
+ * Changes : <Description|date of modifications>
+ *
+ ********************************************************/
 package movies;
 
 import java.sql.Connection;
@@ -10,15 +32,15 @@ public class GetImdbScore {
 	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
-	private ArrayList<String> ratings = new ArrayList<String>();
-	private String rating;
+	private ArrayList<String> imdbScores = new ArrayList<String>();
+	private String imdbScore;
 
 	public ArrayList<String> getAllRating(String statement)
 			throws SQLException {
 		conn = null;
 		stmt = null;
 		rs = null;
-		ratings = new ArrayList<String>();
+		imdbScores = new ArrayList<String>();
 		try {
 			conn = SqlConnection.dbConnector();
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -28,8 +50,8 @@ public class GetImdbScore {
 			rs.getMetaData();
 
 			while (rs.next()) {
-				rating = rs.getString("ImdbScore");
-				ratings.add(rating);
+				imdbScore = rs.getString("ImdbScore");
+				imdbScores.add(imdbScore);
 
 			}
 
@@ -46,6 +68,6 @@ public class GetImdbScore {
 		if (conn != null) {
 			conn.close();
 		}
-		return ratings;
+		return imdbScores;
 	}
 }
