@@ -191,7 +191,7 @@ public class MainWindow extends JFrame {
 		lblActor = new JLabel("Actor");
 		lblGenre = new JLabel("Genre");
 		lblImdbRating = new JLabel("Imdb Rating");
-		
+
 		sortDataBase.add(lblActor);
 		chckbxSearchActor = new JCheckBox("");
 		sortDataBase.add(chckbxSearchActor);
@@ -199,7 +199,7 @@ public class MainWindow extends JFrame {
 		sortDataBase.add(lblGenre);
 		checkBoxGenre = new JCheckBox("");
 		sortDataBase.add(checkBoxGenre);
-		sortDataBase.add(genreBox);		
+		sortDataBase.add(genreBox);
 		sortDataBase.add(lblImdbRating);
 		chckbxImdbRating = new JCheckBox("");
 		sortDataBase.add(chckbxImdbRating);
@@ -261,31 +261,60 @@ public class MainWindow extends JFrame {
 		btnSearchDataBase = new JButton("Search");
 		btnSearchDataBase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*Calls methods that use if statements to detrmine what SQL commands to use*/
-				imdbCheckBox();	
+				/*
+				 * Calls methods that use if statements to detrmine what SQL
+				 * commands to use
+				 */
+				imdbCheckBox();
 				actorCheckBox();
 				genreCheckBox();
 			}
 
+			/**
+			 * Calls GenreCheckBox that uses if statements to determine what
+			 * check boxes are selected returns the corresponding sql command
+			 * and then calls tryAssosiation() to populate Assosiation Table
+			 */
 			private void genreCheckBox() {
 				GenreCheckBox myGenreCheckBox = new GenreCheckBox();
-				sqlAssosiationButton = myGenreCheckBox.checkGenreCheckBox(chckbxSearchActor, chckbxImdbRating, checkBoxGenre, sqlAssosiationButton, actorBox, imdbBox, genreBox);
+				sqlAssosiationButton = myGenreCheckBox.checkGenreCheckBox(
+						chckbxSearchActor, chckbxImdbRating, checkBoxGenre,
+						sqlAssosiationButton, actorBox, imdbBox, genreBox);
 				tryAssosiationTable();
 			}
 
+			/**
+			 * Calls ActorCheckBox that uses if statements to determine what
+			 * check boxes are selected returns the corresponding sql command
+			 * and then calls tryAssosiation() to populate Assosiation Table
+			 */
 			private void actorCheckBox() {
 				ActorCheckBox myActorCheckBox = new ActorCheckBox();
-				sqlAssosiationButton = myActorCheckBox.checkActorCheckBox(chckbxSearchActor, chckbxImdbRating, checkBoxGenre, sqlAssosiationButton, actorBox, imdbBox, genreBox);
+				sqlAssosiationButton = myActorCheckBox.checkActorCheckBox(
+						chckbxSearchActor, chckbxImdbRating, checkBoxGenre,
+						sqlAssosiationButton, actorBox, imdbBox, genreBox);
 				tryAssosiationTable();
 			}
 
+			/**
+			 * Calls ImdbRatingCheckBox that uses if statements to determine
+			 * what check boxes are selected returns the corresponding sql
+			 * command and then calls tryAssosiation() to populate Assosiation
+			 * Table
+			 */
 			private void imdbCheckBox() {
 
 				ImdbRatingCheckBox myImdbCheck = new ImdbRatingCheckBox();
-				sqlAssosiationButton = myImdbCheck.checkImdbCheckBox(chckbxSearchActor, chckbxImdbRating, checkBoxGenre, sqlAssosiationButton, actorBox, imdbBox, genreBox);
+				sqlAssosiationButton = myImdbCheck.checkImdbCheckBox(
+						chckbxSearchActor, chckbxImdbRating, checkBoxGenre,
+						sqlAssosiationButton, actorBox, imdbBox, genreBox);
 				tryAssosiationTable();
 			}
 
+			/**
+			 * Calls AssosiationTable.getConnectionAssosiation() populated
+			 * JTable on assosiation panel based on sqlCommand
+			 */
 			private void tryAssosiationTable() {
 				try {
 					modelAssosiates.setRowCount(0);
@@ -295,7 +324,7 @@ public class MainWindow extends JFrame {
 					e.printStackTrace();
 				}
 			}
-			
+
 		});
 	}
 
