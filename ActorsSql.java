@@ -55,7 +55,7 @@ public class ActorsSql {
 					+"('Tom', 'Holland'),"
 					+"('Tom', 'Hiddleston'),"
 					+"('Scarlet', 'Johanson'),"
-					+"('Benjamin', 'Cumberbath'),"
+					+"('Benedict', 'Cumberbatch'),"
 					+"('Chris', 'Pratt'),"
 					+"('Josh', 'Broln')";
 

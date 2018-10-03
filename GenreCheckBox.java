@@ -16,7 +16,7 @@
  * 
  *
  * 3) What algorithms, techniques, etc. are used in implementing the data structures.
- * if statement
+ * if statement, encapsulation
  * 
  * Method checkGenreCheckBox
  * uses if statements to determine what check boxes are selected 
@@ -28,57 +28,36 @@
  ********************************************************/
 package movies;
 
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-
 public class GenreCheckBox {
-	
-	public String checkGenreCheckBox(JCheckBox chckbxSearchActor,
-			JCheckBox chckbxImdbRating, JCheckBox checkBoxGenre,
-			String sqlAssosiationButton, JComboBox<Object> actorBox,
-			JComboBox<Object> imdbBox, JComboBox<Object> genreBox) {
-		if (checkBoxGenre.isSelected() && !chckbxImdbRating.isSelected()
-				&& !chckbxSearchActor.isSelected()) {
-			sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.ImdbScore, "
-					+ "m.Rating, a.FirstName, a.LastName " + "FROM Movie m "
-					+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
-					+ "JOIN Actor a ON ama.ActorID = a.ID " + "WHERE Genre = '"
-					+ genreBox.getSelectedItem() + "'";
+	String preSqlCommand = "SELECT  m.Title, m.Genre, m.ImdbScore, "
+			+ "m.Rating, a.FirstName, a.LastName " + "FROM Movie m "
+			+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
+			+ "JOIN Actor a ON ama.ActorID = a.ID ";
+
+	public String checkGenreCheckBox1(SearchParamaters s, String sqlAssosiationButton) {
+		if (s.CheckBoxGenre.isSelected() && !s.CheckBoxImdbRank.isSelected() && !s.CheckBoxActor.isSelected()) {
+			sqlAssosiationButton = preSqlCommand + "WHERE Genre = '"
+					+ s.Genre.getSelectedItem() + "'";
 		}
-		if (checkBoxGenre.isSelected() && chckbxImdbRating.isSelected()
-				&& !chckbxSearchActor.isSelected()) {
-			sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.ImdbScore, "
-					+ "m.Rating, a.FirstName, a.LastName " + "FROM Movie m "
-					+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
-					+ "JOIN Actor a ON ama.ActorID = a.ID " + "WHERE Genre = '"
-					+ genreBox.getSelectedItem() + "'" + "AND ImdbScore = "
-					+ imdbBox.getSelectedItem();
+		if (s.CheckBoxGenre.isSelected() && s.CheckBoxImdbRank.isSelected() && !s.CheckBoxActor.isSelected()) {
+			sqlAssosiationButton = preSqlCommand + "WHERE Genre = '"
+					+ s.Genre.getSelectedItem() + "'" + "AND ImdbScore = "
+					+ s.ImdbRating.getSelectedItem();
 		}
-		if (checkBoxGenre.isSelected() && chckbxSearchActor.isSelected()
-				&& !chckbxImdbRating.isSelected()) {
-			sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.ImdbScore, "
-					+ "m.Rating, a.FirstName, a.LastName " + "FROM Movie m "
-					+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
-					+ "JOIN Actor a ON ama.ActorID = a.ID "
-					+ "WHERE LastName = '" + actorBox.getSelectedItem() + "'"
-					+ "AND Genre = '" + genreBox.getSelectedItem() + "'";
+		if (s.CheckBoxGenre.isSelected() && !s.CheckBoxImdbRank.isSelected() && s.CheckBoxActor.isSelected()) {
+			sqlAssosiationButton = preSqlCommand
+					+ "WHERE LastName = '" + s.Actor.getSelectedItem() + "'"
+					+ "AND Genre = '" + s.Genre.getSelectedItem() + "'";
 		}
-		if (chckbxImdbRating.isSelected() && checkBoxGenre.isSelected()
-				&& chckbxSearchActor.isSelected()) {
-			sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.ImdbScore, "
-					+ "m.Rating, a.FirstName, a.LastName " + "FROM Movie m "
-					+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
-					+ "JOIN Actor a ON ama.ActorID = a.ID "
-					+ "WHERE LastName = '" + actorBox.getSelectedItem() + "'"
-					+ "AND Genre = '" + genreBox.getSelectedItem() + "'"
-					+ "AND ImdbScore = " + imdbBox.getSelectedItem();
+		if (s.CheckBoxGenre.isSelected() && s.CheckBoxImdbRank.isSelected() && s.CheckBoxActor.isSelected()) {
+			sqlAssosiationButton = preSqlCommand
+					+ "WHERE LastName = '" + s.Actor.getSelectedItem() + "'"
+					+ "AND Genre = '" + s.Genre.getSelectedItem() + "'"
+					+ "AND ImdbScore = " + s.ImdbRating.getSelectedItem();
 		}
-		if (!chckbxImdbRating.isSelected() && !checkBoxGenre.isSelected()
-				&& !chckbxSearchActor.isSelected()) {
-			sqlAssosiationButton = "SELECT  m.Title, m.Genre, m.Rating, m.ImdbScore, a.FirstName, a.LastName "
-					+ "FROM Movie m "
-					+ "JOIN AssociationMovieActor ama ON ama.MovieID = m.ID "
-					+ "JOIN Actor a ON ama.ActorID = a.ID ";
+		
+		if (!s.CheckBoxGenre.isSelected() && !s.CheckBoxImdbRank.isSelected() && !s.CheckBoxActor.isSelected()) {
+			sqlAssosiationButton = preSqlCommand;
 		}
 		return sqlAssosiationButton;
 	}

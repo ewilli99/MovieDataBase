@@ -1,5 +1,4 @@
 /********************************************************
- *
  * Project : A02 MovieDataBase
  * File : MainWindow.java
  * Name : Emily Williams 
@@ -73,11 +72,15 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
+import java.awt.CardLayout;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
 
 public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel sortDataBase;
+	private CardLayout cardLayout = new CardLayout();
 
 	private JTable tableMovies;
 	private JTable tableAssosiates;
@@ -98,9 +101,9 @@ public class MainWindow extends JFrame {
 	private AssociationTable myAssosiationTable = new AssociationTable();
 	private ActorsTable myActorTable = new ActorsTable();
 
-	private JComboBox<Object> actorBox;
-	private JComboBox<Object> genreBox;
-	private JComboBox<Object> imdbBox;
+	private JComboBox<Object> actorDropDown;
+	private JComboBox<Object> genreDropDown;
+	private JComboBox<Object> imdbDropDown;
 
 	private String sqlMovies = "SELECT * FROM Movie ";
 	private String sqlActor = "SELECT * FROM Actor ";
@@ -195,15 +198,15 @@ public class MainWindow extends JFrame {
 		sortDataBase.add(lblActor);
 		chckbxSearchActor = new JCheckBox("");
 		sortDataBase.add(chckbxSearchActor);
-		sortDataBase.add(actorBox);
+		sortDataBase.add(actorDropDown);
 		sortDataBase.add(lblGenre);
 		checkBoxGenre = new JCheckBox("");
 		sortDataBase.add(checkBoxGenre);
-		sortDataBase.add(genreBox);
+		sortDataBase.add(genreDropDown);
 		sortDataBase.add(lblImdbRating);
 		chckbxImdbRating = new JCheckBox("");
 		sortDataBase.add(chckbxImdbRating);
-		sortDataBase.add(imdbBox);
+		sortDataBase.add(imdbDropDown);
 		sortDataBase.add(btnSearchDataBase);
 	}
 
@@ -213,13 +216,13 @@ public class MainWindow extends JFrame {
 	 * @throws SQLException
 	 */
 	private void imdbComboBox() throws SQLException {
-		imdbBox = new JComboBox<Object>();
+		imdbDropDown = new JComboBox<Object>();
 		String ratingStatement = "SELECT DISTINCT ImdbScore FROM Movie ";
 		GetImdbScore myGetAllRatings = new GetImdbScore();
 		DefaultComboBoxModel<Object> modelRating = new DefaultComboBoxModel<>(
 				myGetAllRatings.getAllRating(ratingStatement).toArray());
-		imdbBox = new JComboBox<Object>(modelRating);
-		imdbBox.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		imdbDropDown = new JComboBox<Object>(modelRating);
+		imdbDropDown.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 
 	}
 
@@ -229,13 +232,13 @@ public class MainWindow extends JFrame {
 	 * @throws SQLException
 	 */
 	private void actorComboBox() throws SQLException {
-		actorBox = new JComboBox<Object>();
+		actorDropDown = new JComboBox<Object>();
 		GetAllActors myGetAllActors = new GetAllActors();
 		String actorStatement = "SELECT DISTINCT ID, FirstName, LastName FROM Actor ";
 		DefaultComboBoxModel<Object> modelActor = new DefaultComboBoxModel<>(
 				myGetAllActors.getAllActors(actorStatement).toArray());
-		actorBox = new JComboBox<Object>(modelActor);
-		actorBox.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		actorDropDown = new JComboBox<Object>(modelActor);
+		actorDropDown.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 	}
 
 	/**
@@ -248,8 +251,8 @@ public class MainWindow extends JFrame {
 		GetAllGenres myGetAllGenres = new GetAllGenres();
 		DefaultComboBoxModel<Object> model = new DefaultComboBoxModel<>(
 				myGetAllGenres.getAllGenres(genreStatement).toArray());
-		genreBox = new JComboBox<Object>(model);
-		genreBox.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		genreDropDown = new JComboBox<Object>(model);
+		genreDropDown.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 	}
 
 	/**
@@ -261,10 +264,6 @@ public class MainWindow extends JFrame {
 		btnSearchDataBase = new JButton("Search");
 		btnSearchDataBase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
-				 * Calls methods that use if statements to detrmine what SQL
-				 * commands to use
-				 */
 				imdbCheckBox();
 				actorCheckBox();
 				genreCheckBox();
@@ -276,10 +275,15 @@ public class MainWindow extends JFrame {
 			 * and then calls tryAssosiation() to populate Assosiation Table
 			 */
 			private void genreCheckBox() {
+				SearchParamaters mySearchParamater = new SearchParamaters();
+				mySearchParamater.Actor = actorDropDown;
+				mySearchParamater.Genre = genreDropDown;
+				mySearchParamater.ImdbRating = imdbDropDown;
+				mySearchParamater.CheckBoxActor = chckbxSearchActor;
+				mySearchParamater.CheckBoxGenre = checkBoxGenre;
+				mySearchParamater.CheckBoxImdbRank = chckbxImdbRating;
 				GenreCheckBox myGenreCheckBox = new GenreCheckBox();
-				sqlAssosiationButton = myGenreCheckBox.checkGenreCheckBox(
-						chckbxSearchActor, chckbxImdbRating, checkBoxGenre,
-						sqlAssosiationButton, actorBox, imdbBox, genreBox);
+				sqlAssosiationButton = myGenreCheckBox.checkGenreCheckBox1(mySearchParamater, sqlAssosiationButton);
 				tryAssosiationTable();
 			}
 
@@ -289,10 +293,15 @@ public class MainWindow extends JFrame {
 			 * and then calls tryAssosiation() to populate Assosiation Table
 			 */
 			private void actorCheckBox() {
-				ActorCheckBox myActorCheckBox = new ActorCheckBox();
-				sqlAssosiationButton = myActorCheckBox.checkActorCheckBox(
-						chckbxSearchActor, chckbxImdbRating, checkBoxGenre,
-						sqlAssosiationButton, actorBox, imdbBox, genreBox);
+				SearchParamaters mySearchParamater = new SearchParamaters();
+				mySearchParamater.Actor = actorDropDown;
+				mySearchParamater.Genre = genreDropDown;
+				mySearchParamater.ImdbRating = imdbDropDown;
+				mySearchParamater.CheckBoxActor = chckbxSearchActor;
+				mySearchParamater.CheckBoxGenre = checkBoxGenre;
+				mySearchParamater.CheckBoxImdbRank = chckbxImdbRating;
+				ActorCheckBox myActor = new ActorCheckBox();
+				sqlAssosiationButton = myActor.checkActorBox(mySearchParamater, sqlAssosiationButton);
 				tryAssosiationTable();
 			}
 
@@ -303,11 +312,15 @@ public class MainWindow extends JFrame {
 			 * Table
 			 */
 			private void imdbCheckBox() {
-
-				ImdbRatingCheckBox myImdbCheck = new ImdbRatingCheckBox();
-				sqlAssosiationButton = myImdbCheck.checkImdbCheckBox(
-						chckbxSearchActor, chckbxImdbRating, checkBoxGenre,
-						sqlAssosiationButton, actorBox, imdbBox, genreBox);
+				SearchParamaters mySearchParamater = new SearchParamaters();
+				mySearchParamater.Actor = actorDropDown;
+				mySearchParamater.Genre = genreDropDown;
+				mySearchParamater.ImdbRating = imdbDropDown;
+				mySearchParamater.CheckBoxActor = chckbxSearchActor;
+				mySearchParamater.CheckBoxGenre = checkBoxGenre;
+				mySearchParamater.CheckBoxImdbRank = chckbxImdbRating;
+				ImdbRatingCheckBox myImdb = new ImdbRatingCheckBox();
+				sqlAssosiationButton = myImdb.checkImdbBoxes(mySearchParamater, sqlAssosiationButton);
 				tryAssosiationTable();
 			}
 

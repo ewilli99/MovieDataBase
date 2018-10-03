@@ -33,15 +33,9 @@ import java.sql.Statement;
 public class CreateDataBase {
 
 	public static void main(String[] args) throws SQLException {
-		// TODO Auto-generated method stub
-		//executeSqlStatement(MoviesSql.dropTable(),MoviesSql.createTable(),MoviesSql.fillTable());
-		/*executeSqlStatement(MoviesSql.fillTable());*/
-		/*executeSqlStatement(ActorsSql.createTable());
-		executeSqlStatement(ActorsSql.fillTable());*/
-		//executeSqlStatement(AssociationSql.createTable());
-		//executeSqlStatement(AssociationSql.fillTable());
-		//executeSqlStatement(AssociationSql.dropTable());
-		System.out.println("Done");
+		/*executeSqlStatement(ActorsSql.dropTable(),ActorsSql.createTable(),ActorsSql.fillTable());
+		executeSqlStatement(AssociationSql.dropTable(),AssociationSql.createTable(),AssociationSql.fillTable());
+		System.out.println("Done");*/
 
 	}
 

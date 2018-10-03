@@ -12,7 +12,6 @@
  *
  * 2) What data-structures are used.
  * Classes, Connection, Statement, ResultSet, int, String, ArrayList
- * 
  *
  * 3) What algorithms, techniques, etc. are used in implementing the data structures.
  * connects to the database and displays the Actors last name onto the imdbScoreJcomboBox
