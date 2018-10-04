@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : CreateDataBase.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -33,15 +33,9 @@ import java.sql.Statement;
 public class CreateDataBase {
 
 	public static void main(String[] args) throws SQLException {
-		// TODO Auto-generated method stub
-		//executeSqlStatement(MoviesSql.dropTable(),MoviesSql.createTable(),MoviesSql.fillTable());
-		/*executeSqlStatement(MoviesSql.fillTable());*/
-		/*executeSqlStatement(ActorsSql.createTable());
-		executeSqlStatement(ActorsSql.fillTable());*/
-		//executeSqlStatement(AssociationSql.createTable());
-		//executeSqlStatement(AssociationSql.fillTable());
-		//executeSqlStatement(AssociationSql.dropTable());
-		System.out.println("Done");
+		/*executeSqlStatement(ActorsSql.dropTable(),ActorsSql.createTable(),ActorsSql.fillTable());
+		executeSqlStatement(AssociationSql.dropTable(),AssociationSql.createTable(),AssociationSql.fillTable());
+		System.out.println("Done");*/
 
 	}
 

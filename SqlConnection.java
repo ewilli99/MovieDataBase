@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : SqlConnection.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)

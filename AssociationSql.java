@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : AssosiationSql.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -87,7 +87,8 @@ public class AssociationSql {
 				+ "(10, 19),"
 				+ "(10, 21),"
 				+ "(10, 24),"
-				+ "(10, 23)";
+				+ "(10, 23),"
+				+ "(10, 26)";
 		
 		
 	}

@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : ActorsSql.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -55,7 +55,7 @@ public class ActorsSql {
 					+"('Tom', 'Holland'),"
 					+"('Tom', 'Hiddleston'),"
 					+"('Scarlet', 'Johanson'),"
-					+"('Benjamin', 'Cumberbath'),"
+					+"('Benedict', 'Cumberbatch'),"
 					+"('Chris', 'Pratt'),"
 					+"('Josh', 'Broln')";
 

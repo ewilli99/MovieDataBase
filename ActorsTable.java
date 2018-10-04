@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : ActorsTable.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -33,6 +33,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +56,23 @@ public class ActorsTable extends JTable{
 	 */
 	public ActorsTable() throws SQLException {
 
+	}
+	
+	public JScrollPane tableMovies(DefaultTableModel modelMovies, JTable tableMovies, JScrollPane paneMovies) {
+		modelMovies = new DefaultTableModel();
+		modelMovies.addColumn("Movie ID");
+		modelMovies.addColumn("Title");
+		modelMovies.addColumn("Release Date");
+		modelMovies.addColumn("Imdb Score");
+		modelMovies.addColumn("Director");
+		modelMovies.addColumn("Genre");
+		modelMovies.addColumn("Rating");
+
+		tableMovies = new JTable(modelMovies);
+		tableMovies.setEnabled(false);
+
+		paneMovies = new JScrollPane(tableMovies);
+		return paneMovies;
 	}
 
 	public Connection getConnectionActors(String statement,

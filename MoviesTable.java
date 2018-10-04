@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : MoviesTable.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -63,23 +63,6 @@ public class MoviesTable extends JTable {
 
 
 	}
-	public JScrollPane tableMovies(DefaultTableModel modelMovies, JTable tableMovies, JScrollPane paneMovies) {
-		modelMovies = new DefaultTableModel();
-		modelMovies.addColumn("Movie ID");
-		modelMovies.addColumn("Title");
-		modelMovies.addColumn("Release Date");
-		modelMovies.addColumn("Imdb Score");
-		modelMovies.addColumn("Director");
-		modelMovies.addColumn("Genre");
-		modelMovies.addColumn("Rating");
-		
-		tableMovies = new JTable(modelMovies);
-		tableMovies.setEnabled(false);
-
-		paneMovies = new JScrollPane(tableMovies);
-		return paneMovies;
-	}
-
 	/**
 	 * creates a JTable where you can view items in movie database
 	 * 
@@ -96,7 +79,6 @@ public class MoviesTable extends JTable {
 			ps = conn.prepareStatement(statement);
 			rs = ps.executeQuery();
 			ResultSetMetaData rsmdMovie = rs.getMetaData();
-
 			rsmdMovie.getColumnCount();
 
 			while (rs.next()) {

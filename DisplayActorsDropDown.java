@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : GetAllActors.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -28,15 +28,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-public class GetAllActors {
+public class DisplayActorsDropDown {
 	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
 	private ArrayList<String> actors = new ArrayList<String>();
 	private String lastName;
 	
-	public ArrayList<String> getAllActors(String statement)
+	public List<String> getAllActors(String statement)
 			throws SQLException {
 		conn = null;
 		stmt = null;

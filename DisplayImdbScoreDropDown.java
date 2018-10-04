@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : GetImdbScore.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -12,7 +12,6 @@
  *
  * 2) What data-structures are used.
  * Classes, Connection, Statement, ResultSet, int, String, ArrayList
- * 
  *
  * 3) What algorithms, techniques, etc. are used in implementing the data structures.
  * connects to the database and displays the Actors last name onto the imdbScoreJcomboBox
@@ -27,15 +26,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-public class GetImdbScore {
+public class DisplayImdbScoreDropDown {
 	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
 	private ArrayList<String> imdbScores = new ArrayList<String>();
 	private String imdbScore;
 
-	public ArrayList<String> getAllRating(String statement)
+	public List<String> getAllRating(String statement)
 			throws SQLException {
 		conn = null;
 		stmt = null;

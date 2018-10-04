@@ -2,7 +2,7 @@
  *
  * Project : A02 MovieDataBase
  * File : getAllGenres.java
- * Name : Emily Williams 
+ * Name : Emily Williams Jeremy Jacobson
  * Date : 10 October 2018
  *
  * Description : (Narrative desciption, not code)
@@ -27,15 +27,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-public class GetAllGenres {
+public class DisplayGenresDropDown {
 	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
 	private ArrayList<String> genres = new ArrayList<String>();
 	private String genre;
 	
-	public ArrayList<String> getAllGenres(String statement)
+	public List<String> getAllGenres(String statement)
 			throws SQLException {
 		conn = null;
 		stmt = null;
