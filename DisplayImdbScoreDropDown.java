@@ -26,15 +26,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-public class GetImdbScore {
+public class DisplayImdbScoreDropDown {
 	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
 	private ArrayList<String> imdbScores = new ArrayList<String>();
 	private String imdbScore;
 
-	public ArrayList<String> getAllRating(String statement)
+	public List<String> getAllRating(String statement)
 			throws SQLException {
 		conn = null;
 		stmt = null;

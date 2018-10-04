@@ -13,7 +13,6 @@
  * Classes, String, int, Connection, Statement, ResultSet, DefaultTableModel, JComboBox, JTable, JButton, 
  * Default ComboBox
  * 
- *
  * 3) What algorithms, techniques, etc. are used in implementing the data structures.
  * while loop, try catch, sql commands
  * 
@@ -52,36 +51,27 @@ package movies;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
 import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JLabel;
 import javax.swing.JCheckBox;
-import java.awt.CardLayout;
-import javax.swing.JMenuItem;
-import javax.swing.JMenuBar;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel sortDataBase;
-	private CardLayout cardLayout = new CardLayout();
-
 	private JTable tableMovies;
 	private JTable tableAssosiates;
 	private JTable tableActors;
@@ -148,7 +138,7 @@ public class MainWindow extends JFrame {
 		JPanel movieDataBase = new JPanel();
 		movieDataBase.setLayout(new BorderLayout(0, 0));
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(movieDataBase, BorderLayout.WEST);
 		setContentPane(contentPane);
@@ -218,7 +208,7 @@ public class MainWindow extends JFrame {
 	private void imdbComboBox() throws SQLException {
 		imdbDropDown = new JComboBox<Object>();
 		String ratingStatement = "SELECT DISTINCT ImdbScore FROM Movie ";
-		GetImdbScore myGetAllRatings = new GetImdbScore();
+		DisplayImdbScoreDropDown myGetAllRatings = new DisplayImdbScoreDropDown();
 		DefaultComboBoxModel<Object> modelRating = new DefaultComboBoxModel<>(
 				myGetAllRatings.getAllRating(ratingStatement).toArray());
 		imdbDropDown = new JComboBox<Object>(modelRating);
@@ -233,7 +223,7 @@ public class MainWindow extends JFrame {
 	 */
 	private void actorComboBox() throws SQLException {
 		actorDropDown = new JComboBox<Object>();
-		GetAllActors myGetAllActors = new GetAllActors();
+		DisplayActorsDropDown myGetAllActors = new DisplayActorsDropDown();
 		String actorStatement = "SELECT DISTINCT ID, FirstName, LastName FROM Actor ";
 		DefaultComboBoxModel<Object> modelActor = new DefaultComboBoxModel<>(
 				myGetAllActors.getAllActors(actorStatement).toArray());
@@ -248,7 +238,7 @@ public class MainWindow extends JFrame {
 	 */
 	private void genreComboBox() throws SQLException {
 		String genreStatement = "SELECT DISTINCT Genre FROM Movie ";
-		GetAllGenres myGetAllGenres = new GetAllGenres();
+		DisplayGenresDropDown myGetAllGenres = new DisplayGenresDropDown();
 		DefaultComboBoxModel<Object> model = new DefaultComboBoxModel<>(
 				myGetAllGenres.getAllGenres(genreStatement).toArray());
 		genreDropDown = new JComboBox<Object>(model);
