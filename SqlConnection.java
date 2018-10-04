@@ -27,7 +27,10 @@ package movies;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
-
+/**
+ * Connects to database if the database is not created it creates the database
+ * @author Emily
+ */
 public class SqlConnection {
 	Connection conn = null;
 

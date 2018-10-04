@@ -25,7 +25,11 @@ package movies;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-
+/**
+ * Search Paramaters that will be used in ActorCheckBox, GenreCheckBox, and ImdbRatingCheckBox
+ * @author Emily
+ *
+ */
 public class SearchParamaters {
 	public JComboBox<Object> Actor;
 	public JComboBox<Object> Genre;
